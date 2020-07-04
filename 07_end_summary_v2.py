@@ -39,7 +39,7 @@ def check(num_one, sign, num_two):
 # Main routine
 rounds = intcheck("How many questions would you like to play with ? ", 1, 10)
 rounds_played = 0
-
+correct_round = 0
 won = 0
 lost = 0
 # defining the following terms
@@ -47,7 +47,8 @@ question = ""
 answer = ""
 comment = ""
 equation = ""
-
+right = 0
+wrong = 0
 # empty list to store the question therefore hold the history
 game_history = []
 
@@ -79,10 +80,15 @@ while rounds_played < rounds:
             if equation == answer:
                 comment = "Correct"
                 print(random.choice(good_comm))
+                # to calculate percentage
+                correct_round += 1
+                # to calculate total right answers
+                right += 1
                 break
             else:
                 comment = "Incorrect"
                 print(random.choice(bad_comm))
+                wrong += 1
                 print("THE CORRECT ANSWER IS: {}".format(answer))
                 break
         # if user enters invalid
@@ -96,7 +102,16 @@ while rounds_played < rounds:
     else:
         rounds_result = "Question {}: {} |  Result: {} | Correct Answer = {} " .format(rounds_played,question,comment,answer)
         game_history.append(rounds_result)
+# to calculate percentage
+percentage = int(correct_round/rounds*100)
+# to print game stats
+print()
+print("****Game Statistics****")
+print("Your Accuracy Rate is  {} % ".format(percentage))
+print("You Got Total {} Correct ".format(right))
+print("You Got Total {} Incorrect ".format(wrong))
 
+# to print end game summary
 print()
 print("**** Summary ****")
 
